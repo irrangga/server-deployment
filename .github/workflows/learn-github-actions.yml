@@ -8,5 +8,6 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: '^1.17.1'
+      - run: go version
       - run: go get github.com/gin-gonic/gin
       - run: go get github.com/joho/godotenv
