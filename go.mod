@@ -3,7 +3,10 @@ module server-deployment
 // +heroku goVersion go1.17
 go 1.17
 
-require github.com/gin-gonic/gin v1.7.4
+require (
+	github.com/gin-gonic/gin v1.7.4
+	github.com/joho/godotenv v1.4.0
+)
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect

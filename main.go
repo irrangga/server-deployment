@@ -2,9 +2,13 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 type Account struct {
@@ -13,6 +17,15 @@ type Account struct {
 }
 
 func main() {
+	// load .env file
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
+	port := os.Getenv("PORT")
+
 	var dataJSON = `{
 		"sammy": {
 				"username": "SammyShark",
@@ -50,8 +63,9 @@ func main() {
 				result = v.Followers
 			}
 		}
-		c.JSON(http.StatusOK, result)
+		dataResult := fmt.Sprintf("followers: %d", result)
+		c.JSON(http.StatusOK, dataResult)
 	})
 
-	r.Run(":8080")
+	r.Run(":" + port)
 }
