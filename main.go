@@ -11,7 +11,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-type Account struct {
+type account struct {
 	Username  string `json:"username"`
 	Followers int    `json:"followers"`
 }
@@ -44,7 +44,7 @@ func main() {
 		}
 	}`
 
-	dataMap := map[string]Account{}
+	dataMap := map[string]account{}
 	json.Unmarshal([]byte(dataJSON), &dataMap)
 
 	r := gin.Default()
