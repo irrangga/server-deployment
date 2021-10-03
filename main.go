@@ -17,7 +17,6 @@ type Account struct {
 }
 
 func main() {
-	// load .env file
 	err := godotenv.Load(".env")
 
 	if err != nil {
@@ -50,12 +49,16 @@ func main() {
 
 	r := gin.Default()
 
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, "Homework Server-Deployment")
+	})
+
 	r.GET("/:userID", func(c *gin.Context) {
 		name := c.Param("userID")
 		c.JSON(http.StatusOK, dataMap[name])
 	})
 
-	r.GET("/follower/:username", func(c *gin.Context) {
+	r.GET("/followers/:username", func(c *gin.Context) {
 		name := c.Param("username")
 		result := 0
 		for _, v := range dataMap {
